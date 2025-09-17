@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const WhatsAppButton = () => {
-  const phoneNumber = "+5233394869994"; // Tu número sin espacios para el enlace
+  const phoneNumber = "+523339486994"; // Tu número sin espacios para el enlace
   const message = "¡Hola! Me interesa conocer más sobre sus servicios tecnológicos.";
   
   // Crear el enlace de WhatsApp

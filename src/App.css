@@ -1,0 +1,692 @@
+#root {
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.App {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   ESTILOS MEJORADOS PARA SERVICIOS
+   =============================== */
+
+/* Contenedor principal de servicios */
+.services {
+  position: relative;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 80px 20px;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.services-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+/* Elemento decorativo de fondo mejorado */
+.services::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(139, 69, 255, 0.1) 0%, transparent 70%);
+  z-index: 1;
+}
+
+/* Línea decorativa rediseñada */
+.decorative-line {
+  position: absolute;
+  top: 20%;
+  left: -10%;
+  width: 120%;
+  height: 200px;
+  background: linear-gradient(45deg, transparent 40%, rgba(139, 69, 255, 0.3) 50%, transparent 60%);
+  transform: rotate(-15deg);
+  z-index: 1;
+  opacity: 0.5;
+}
+
+/* Header de servicios */
+.services-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #ffffff, #8b45ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-description {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Grid de servicios */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Tarjetas de servicios mejoradas */
+.service-card {
+  position: relative;
+  height: 400px;
+  perspective: 1000px;
+  z-index: 10;
+}
+
+.service-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.service-card:hover .service-card-inner {
+  transform: rotateY(180deg);
+}
+
+.service-card-front, .service-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-card-back {
+  transform: rotateY(180deg);
+  background: rgba(139, 69, 255, 0.2);
+}
+
+/* Iconos de servicios */
+.service-icon {
+  font-size: 4rem;
+  color: #8b45ff;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 8px rgba(139, 69, 255, 0.3));
+}
+
+/* Títulos de servicios */
+.service-title {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Descripción de servicios */
+.service-description {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  font-size: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+/* Parte trasera de las tarjetas */
+.service-features-title {
+  color: #8b45ff;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  width: 100%;
+}
+
+.service-features li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  padding-left: 20px;
+}
+
+.service-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #8b45ff;
+  font-weight: bold;
+}
+
+/* Botón de solicitar */
+.service-btn {
+  background: linear-gradient(135deg, #8b45ff, #6c5ce7);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(139, 69, 255, 0.3);
+}
+
+.service-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(139, 69, 255, 0.5);
+}
+
+.service-btn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .services {
+    padding: 60px 15px;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-description {
+    font-size: 1rem;
+  }
+  
+  .service-card {
+    height: 350px;
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+  }
+  
+  .service-icon {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services {
+    padding: 40px 10px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .service-card {
+    height: 320px;
+  }
+  
+  .service-card-front, .service-card-back {
+    padding: 20px;
+  }
+}
+
+/* ===============================
+   BOTÓN FLOTANTE DE WHATSAPP
+   =============================== */
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.whatsapp-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.whatsapp-icon::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #25d366, #128c7e, #25d366);
+  border-radius: 50%;
+  z-index: -1;
+  animation: whatsapp-pulse 2s infinite;
+}
+
+@keyframes whatsapp-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.whatsapp-button:hover .whatsapp-icon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-tooltip {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.whatsapp-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid rgba(0, 0, 0, 0.8);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .whatsapp-button {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .whatsapp-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  
+  .whatsapp-tooltip {
+    display: none; /* Ocultar tooltip en móviles para ahorrar espacio */
+  }
+}
+
+/* Animación de entrada */
+@keyframes whatsapp-bounce-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===============================
+   PÁGINA DE FORMULARIO DE SOLICITUD
+   =============================== */
+
+.request-form-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 40px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.request-form-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(139, 69, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(139, 69, 255, 0.1) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Header del formulario */
+.form-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-5px);
+}
+
+.form-header h1 {
+  color: white;
+  font-size: 2.5rem;
+  margin: 20px 0 10px 0;
+  background: linear-gradient(135deg, #ffffff, #8b45ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.form-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+}
+
+/* Formulario principal */
+.request-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.form-group label svg {
+  color: #8b45ff;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #8b45ff;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(139, 69, 255, 0.3);
+}
+
+.form-group select option {
+  background: #1a1a2e;
+  color: white;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Botón de envío */
+.submit-button {
+  width: 100%;
+  background: linear-gradient(135deg, #8b45ff, #6c5ce7);
+  border: none;
+  padding: 18px 30px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 30px 0 20px 0;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 69, 255, 0.4);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.submit-button .spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.form-note {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0;
+}
+
+.error-message {
+  background: rgba(255, 82, 82, 0.2);
+  border: 1px solid rgba(255, 82, 82, 0.4);
+  color: #ff6b6b;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* Mensaje de éxito */
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  text-align: center;
+  color: white;
+}
+
+.success-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.success-message h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, #25d366, #8b45ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.success-message p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.redirect-message {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .request-form-page {
+    padding: 20px 15px;
+  }
+  
+  .form-container {
+    max-width: 100%;
+  }
+  
+  .request-form {
+    padding: 25px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .form-header h1 {
+    font-size: 2rem;
+  }
+  
+  .back-button {
+    position: static;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+  
+  .success-message h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .request-form {
+    padding: 20px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px;
+  }
+  
+  .submit-button {
+    padding: 15px 25px;
+    font-size: 1rem;
+  }
+}

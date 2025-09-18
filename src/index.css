@@ -455,6 +455,8 @@ html {
   perspective: 1000px;
 }
 
+/* Service card styles moved to App.css to avoid conflicts */
+/*
 .service-card {
   height: 300px;
   position: relative;
@@ -498,6 +500,7 @@ html {
   transform: rotateY(180deg);
   color: var(--light-color);
 }
+*/
 
 .service-icon {
   font-size: 3rem;

@@ -231,10 +231,10 @@ html {
 .hero-title {
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 5rem;
-  font-weight: 300;
+  font-weight: 200;
   margin-bottom: 1rem;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   font-feature-settings: 'liga' 1, 'calt' 1;
 }

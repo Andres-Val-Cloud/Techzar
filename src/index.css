@@ -459,8 +459,7 @@ html {
   height: 300px;
   position: relative;
   cursor: pointer;
-  perspective: 2000px;
-  perspective-origin: center center;
+  /* Perspectiva eliminada para flip recto */
 }
 
 .service-card-inner {
@@ -468,12 +467,12 @@ html {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.5s ease-in-out;
-  transform-origin: center center;
+  transition: transform 0.4s ease-out;
+  transform-origin: 50% 50%;
 }
 
 .service-card:hover .service-card-inner {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0);
 }
 
 .service-card-front,
@@ -489,6 +488,7 @@ html {
   justify-content: center;
   align-items: center;
   text-align: center;
+  transform: translateZ(0); /* Hardware acceleration */
 }
 
 .service-card-front {
@@ -498,7 +498,7 @@ html {
 
 .service-card-back {
   background: var(--gradient-primary);
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0);
   color: var(--light-color);
 }
 

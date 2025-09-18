@@ -229,13 +229,14 @@ html {
 }
 
 .hero-title {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 5rem;
-  font-weight: 700;
+  font-weight: 300;
   margin-bottom: 1rem;
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
+  font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .hero-subtitle {
@@ -252,12 +253,13 @@ html {
 
 .hero-description {
   font-size: 1rem;
-  color: #b4b4b4;
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 2.5rem;
   line-height: 1.8;
   font-weight: 300;
   max-width: 80%;
   letter-spacing: 0.02em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .hero-buttons {

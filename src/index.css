@@ -231,10 +231,10 @@ html {
 .hero-title {
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 5rem;
-  font-weight: 200;
+  font-weight: 300;
   margin-bottom: 1rem;
   line-height: 1.1;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
   font-feature-settings: 'liga' 1, 'calt' 1;
 }
@@ -455,12 +455,12 @@ html {
   perspective: 1000px;
 }
 
-/* Service card styles moved to App.css to avoid conflicts */
-/*
 .service-card {
   height: 300px;
   position: relative;
   cursor: pointer;
+  perspective: 2000px;
+  perspective-origin: center center;
 }
 
 .service-card-inner {
@@ -468,7 +468,8 @@ html {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.6s;
+  transition: transform 0.5s ease-in-out;
+  transform-origin: center center;
 }
 
 .service-card:hover .service-card-inner {
@@ -500,7 +501,6 @@ html {
   transform: rotateY(180deg);
   color: var(--light-color);
 }
-*/
 
 .service-icon {
   font-size: 3rem;

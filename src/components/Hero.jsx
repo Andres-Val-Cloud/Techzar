@@ -111,38 +111,16 @@ const Hero = () => {
           transition={{ delay: 1, duration: 1 }}
         >
           <div className="video-container">
-            <div className="video-placeholder">
-              <div className="video-icon">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <h3 className="video-title">Video Promocional</h3>
-              <p className="video-description">
-                Conoce más sobre Techzar y nuestros servicios
-              </p>
-              <div className="video-placeholder-text">
-                <span>Espacio reservado para video de YouTube</span>
-              </div>
-            </div>
-            {/* 
-            Para agregar un video de YouTube real, reemplaza todo el div 'video-placeholder' 
-            con este iframe y cambia VIDEO_ID por el ID real del video:
-            
             <iframe 
               width="100%" 
               height="315" 
-              src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1" 
+              src="https://www.youtube.com/embed/XvCBvLGzlAQ?rel=0&modestbranding=1" 
               title="Video Promocional - Techzar" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowFullScreen
               loading="lazy">
             </iframe>
-            
-            Ejemplo con un video real:
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            */}
           </div>
         </motion.div>
       </div>

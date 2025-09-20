@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { FaArrowLeft, FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaComments, FaPaperPlane } from 'react-icons/fa';
+import { FaArrowLeft, FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaComments, FaPaperPlane, FaHome } from 'react-icons/fa';
 
 const RequestForm = () => {
   const [searchParams] = useSearchParams();
@@ -89,11 +89,6 @@ const RequestForm = () => {
       console.log('Email enviado exitosamente:', response);
       setIsSubmitted(true);
       
-      // Redirigir después de 4 segundos
-      setTimeout(() => {
-        navigate('/');
-      }, 4000);
-      
     } catch (error) {
       console.error('Error al enviar email:', error);
       setSubmitError('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente.');
@@ -124,13 +119,17 @@ const RequestForm = () => {
           </motion.div>
           <h2>¡Solicitud Enviada Exitosamente!</h2>
           <p>Gracias por contactarnos. Nos pondremos en contacto contigo pronto.</p>
+
           <motion.div 
-            className="redirect-message"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            className="success-actions"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem' }}
           >
-            Redirigiendo a la página principal...
+            <button className="btn btn-primary" onClick={() => navigate('/')}> 
+              <FaHome style={{ marginRight: '0.5rem' }} /> Volver al inicio
+            </button>
           </motion.div>
         </motion.div>
       </div>
@@ -279,10 +278,10 @@ const RequestForm = () => {
               value={formData.urgency}
               onChange={handleInputChange}
             >
-              <option value="low">Baja - Sin prisa</option>
-              <option value="normal">Normal - En las próximas semanas</option>
-              <option value="high">Alta - En los próximos días</option>
-              <option value="urgent">Urgente - Lo antes posible</option>
+              <option value="low">Baja - sin tiempo estimado</option>
+              <option value="normal">Normal - 2-4 semanas</option>
+              <option value="high">Alta - 4-7 semanas</option>
+              <option value="urgent">Urgente - lo antes posible</option>
             </select>
           </div>
 
@@ -323,6 +322,13 @@ const RequestForm = () => {
               </>
             )}
           </motion.button>
+
+          {/* Acción secundaria: volver al inicio */}
+          <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+            <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}> 
+              <FaHome style={{ marginRight: '0.5rem' }} /> Volver al inicio
+            </button>
+          </div>
 
           <p className="form-note">
             * Campos obligatorios. Nos pondremos en contacto contigo en las próximas 24 horas.

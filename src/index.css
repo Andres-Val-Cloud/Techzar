@@ -229,13 +229,18 @@ html {
 }
 
 .hero-title {
-  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: 'Orbitron', 'Segoe UI', monospace, sans-serif;
   font-size: 5rem;
-  font-weight: 300;
+  font-weight: 500;
   margin-bottom: 1rem;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 
+    0 0 10px rgba(139, 69, 255, 0.5),
+    0 0 20px rgba(139, 69, 255, 0.3),
+    0 0 30px rgba(139, 69, 255, 0.2);
   font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
@@ -881,6 +886,11 @@ html {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  .hero {
+    /* Evita que el navbar fijo tape el título en móviles/tablets */
+    padding-top: 80px;
+  }
+
   .desktop-menu {
     display: none;
   }
@@ -902,13 +912,15 @@ html {
   }
 
   .hero-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Apilar contenido y video */
     gap: 2rem;
     text-align: center;
   }
 
   .hero-title {
     font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
 
   .hero-subtitle {
@@ -917,10 +929,16 @@ html {
 
   .hero-description {
     font-size: 1rem;
+    text-align: justify; /* Justificar eslogan en móvil/tablet */
+    text-justify: inter-word;
+    max-width: 100%;
+    hyphens: auto;
+    -webkit-hyphens: auto;
   }
 
   .hero-buttons {
     justify-content: center;
+    margin-top: 0.5rem;
   }
 
   .video-container {
@@ -959,6 +977,24 @@ html {
     gap: 1rem;
   }
 
+  /* Ajustes de espaciado: Services & About */
+  .services {
+    padding: 5rem 0 3.5rem; /* menos espacio inferior */
+  }
+  .services-header {
+    margin-bottom: 2rem;
+  }
+  .services-grid {
+    gap: 1.25rem;
+  }
+
+  .about {
+    padding: 4rem 0; /* menos espacio superior e inferior */
+  }
+  .about-header {
+    margin-bottom: 2rem;
+  }
+
   .footer-bottom-content {
     flex-direction: column;
     gap: 1rem;
@@ -975,6 +1011,11 @@ html {
 }
 
 @media (max-width: 480px) {
+  .hero {
+    /* Asegura separación del navbar fijo también en pantallas pequeñas */
+    padding-top: 80px;
+  }
+
   .navbar-container {
     padding: 0.5rem 1rem;
     height: 65px;
@@ -990,14 +1031,26 @@ html {
 
   .hero-container {
     padding: 1rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .hero-title {
     font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
 
   .hero-subtitle {
     font-size: 1.25rem;
+  }
+
+  .hero-description {
+    text-align: justify; /* Asegurar justificado también en pantallas pequeñas */
+    text-justify: inter-word;
+    max-width: 100%;
+    hyphens: auto;
+    -webkit-hyphens: auto;
   }
 
   .btn {
@@ -1025,7 +1078,15 @@ html {
   }
 
   .video-container iframe {
-    height: 250px;
+    height: 220px; /* Más compacto para pantallas muy pequeñas */
+  }
+
+  /* Más compacto aún en móviles pequeños */
+  .services {
+    padding: 4rem 0 3rem;
+  }
+  .about {
+    padding: 3.5rem 0;
   }
 
   .services-container {

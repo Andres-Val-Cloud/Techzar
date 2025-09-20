@@ -39,12 +39,24 @@ const Navbar = () => {
   const handleItemClick = (href, id) => {
     setActiveSection(id);
     setIsOpen(false);
-    
-    // Smooth scroll al elemento
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+
+    // Esperar a que termine la animación de cierre del menú móvil (~300ms)
+    const delay = 350;
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        // Compensar la altura del navbar fijo
+        const navbar = document.querySelector('.navbar');
+        const offset = navbar?.offsetHeight ? navbar.offsetHeight + 10 : 90;
+        const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: elementTop - offset, behavior: 'smooth' });
+      } else {
+        // Fallback: actualizar el hash
+        if (href.startsWith('#')) {
+          window.location.hash = href;
+        }
+      }
+    }, delay);
   };
 
   return (

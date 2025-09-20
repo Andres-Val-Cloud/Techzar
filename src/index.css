@@ -198,6 +198,11 @@ html {
   overflow: hidden;
 }
 
+/* Desfasar anclajes por navbar fijo */
+#home, #services, #about, #contact {
+  scroll-margin-top: 90px; /* altura aprox. del navbar */
+}
+
 .hero::before {
   content: '';
   position: absolute;

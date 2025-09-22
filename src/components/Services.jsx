@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { FaCode, FaDesktop, FaTools, FaCog, FaWrench, FaHeadset, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { FaCode, FaDesktop, FaTools, FaCog, FaWrench, FaHeadset } from 'react-icons/fa';
 
 const Services = () => {
   const navigate = useNavigate();
@@ -147,21 +147,19 @@ const Services = () => {
               <div className="service-card-inner">
                 <div
                   className="service-card-front"
-                  onClick={() => {
-                    if (isMobile) toggleCard(index);
-                  }}
+                  onClick={() => { if (isMobile) toggleCard(index); }}
                 >
                   <div className="service-icon">
                     {service.icon}
                   </div>
                   <h3 className="service-title">{service.title}</h3>
                   <p className="service-description">{service.description}</p>
-                  {isMobile && (
-                    <div className="tap-hint">Toca para ver más</div>
-                  )}
                 </div>
                 
-                <div className="service-card-back">
+                <div
+                  className="service-card-back"
+                  onClick={() => { if (isMobile) toggleCard(index); }}
+                >
                   <h4 className="service-features-title">Incluye:</h4>
                   <ul className="service-features">
                     {service.features.map((feature, idx) => (
@@ -186,19 +184,6 @@ const Services = () => {
                   >
                     Solicitar
                   </motion.button>
-                  {isMobile && (
-                    <button
-                      type="button"
-                      className="flip-btn flip-btn--back"
-                      aria-label="Volver"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleCard(index);
-                      }}
-                    >
-                      <FaArrowLeft />
-                    </button>
-                  )}
                 </div>
               </div>
             </motion.div>

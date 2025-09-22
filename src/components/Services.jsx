@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { FaCode, FaDesktop, FaTools, FaCog, FaWrench, FaHeadset } from 'react-icons/fa';
+import { FaCode, FaDesktop, FaTools, FaCog, FaWrench, FaHeadset, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 const Services = () => {
   const navigate = useNavigate();
@@ -143,10 +143,14 @@ const Services = () => {
                 stiffness: 300, 
                 damping: 20 
               }}
-              onClick={() => toggleCard(index)}
-            >
+              >
               <div className="service-card-inner">
-                <div className="service-card-front">
+                <div
+                  className="service-card-front"
+                  onClick={() => {
+                    if (isMobile) toggleCard(index);
+                  }}
+                >
                   <div className="service-icon">
                     {service.icon}
                   </div>
@@ -183,7 +187,17 @@ const Services = () => {
                     Solicitar
                   </motion.button>
                   {isMobile && (
-                    <div className="tap-hint-back">Toca para volver</div>
+                    <button
+                      type="button"
+                      className="flip-btn flip-btn--back"
+                      aria-label="Volver"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleCard(index);
+                      }}
+                    >
+                      <FaArrowLeft />
+                    </button>
                   )}
                 </div>
               </div>

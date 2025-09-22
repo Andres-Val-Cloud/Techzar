@@ -115,7 +115,8 @@
   cursor: pointer;
 }
 
-.service-card:hover .service-card-inner {
+.service-card:hover .service-card-inner,
+.service-card.flipped .service-card-inner {
   transform: rotateY(180deg) translateZ(0);
 }
 
@@ -224,6 +225,29 @@
   transform: scale(0.98);
 }
 
+/* Hints de toque para móviles */
+.tap-hint, .tap-hint-back {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 5px 10px;
+  border-radius: 10px;
+  animation: pulse 2s infinite;
+}
+
+.tap-hint-back {
+  background: rgba(139, 69, 255, 0.3);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .services {
@@ -253,6 +277,16 @@
   
   .service-icon {
     font-size: 3rem;
+  }
+  
+  /* Desactivar hover en móviles para usar solo click */
+  .service-card:hover .service-card-inner {
+    transform: none;
+  }
+  
+  /* Solo usar la clase flipped en móviles */
+  .service-card.flipped .service-card-inner {
+    transform: rotateY(180deg) translateZ(0);
   }
 }
 

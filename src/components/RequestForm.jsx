@@ -279,8 +279,8 @@ const RequestForm = () => {
               onChange={handleInputChange}
             >
               <option value="low">Baja - sin tiempo estimado</option>
-              <option value="normal">Normal - 2-4 semanas</option>
-              <option value="high">Alta - 4-7 semanas</option>
+              <option value="normal">Normal - 4-7 semanas</option>
+              <option value="high">Alta - 2-4 semanas</option>
               <option value="urgent">Urgente - lo antes posible</option>
             </select>
           </div>

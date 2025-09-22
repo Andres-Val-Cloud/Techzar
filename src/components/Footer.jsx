@@ -12,8 +12,8 @@ const Footer = () => {
   ];
 
   const contactInfo = [
-    { icon: <FaEnvelope />, text: 'info@techzar.com', href: 'mailto:info@techzar.com' },
-    { icon: <FaPhone />, text: '+1 (555) 123-4567', href: 'tel:+15551234567' },
+    { icon: <FaEnvelope />, text: 'techzar.mx@gmail.com', href: 'mailto:techzar.mx@gmail.com' },
+    { icon: <FaPhone />, text: '+52 (33) 3948 6994', href: 'tel:+523339486994' },
     { icon: <FaMapMarkerAlt />, text: 'Ciudad, País', href: '#' }
   ];
 

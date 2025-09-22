@@ -1,13 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { FaCode, FaDesktop, FaTools, FaCog, FaWrench, FaHeadset } from 'react-icons/fa';
 
 const Services = () => {
   const navigate = useNavigate();
+  const [flippedCards, setFlippedCards] = useState(new Set());
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar si es dispositivo móvil
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleServiceRequest = (serviceTitle) => {
     navigate(`/solicitar?service=${encodeURIComponent(serviceTitle)}`);
+  };
+
+  const toggleCard = (index) => {
+    if (isMobile) {
+      setFlippedCards(prev => {
+        const newSet = new Set(prev);
+        if (newSet.has(index)) {
+          newSet.delete(index);
+        } else {
+          newSet.add(index);
+        }
+        return newSet;
+      });
+    }
   };
 
   const services = [
@@ -103,7 +131,7 @@ const Services = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="service-card"
+              className={`service-card ${flippedCards.has(index) ? 'flipped' : ''}`}
               variants={cardVariants}
               whileHover={{ 
                 scale: 1.05,
@@ -115,6 +143,7 @@ const Services = () => {
                 stiffness: 300, 
                 damping: 20 
               }}
+              onClick={() => toggleCard(index)}
             >
               <div className="service-card-inner">
                 <div className="service-card-front">
@@ -123,6 +152,9 @@ const Services = () => {
                   </div>
                   <h3 className="service-title">{service.title}</h3>
                   <p className="service-description">{service.description}</p>
+                  {isMobile && (
+                    <div className="tap-hint">Toca para ver más</div>
+                  )}
                 </div>
                 
                 <div className="service-card-back">
@@ -143,10 +175,16 @@ const Services = () => {
                     className="service-btn"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    onClick={() => handleServiceRequest(service.title)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleServiceRequest(service.title);
+                    }}
                   >
                     Solicitar
                   </motion.button>
+                  {isMobile && (
+                    <div className="tap-hint-back">Toca para volver</div>
+                  )}
                 </div>
               </div>
             </motion.div>

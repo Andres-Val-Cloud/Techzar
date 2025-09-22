@@ -241,6 +241,8 @@
 
 .tap-hint-back {
   background: rgba(139, 69, 255, 0.3);
+  bottom: 80px; /* Mover hacia arriba para evitar superposición con el botón */
+  top: auto;
 }
 
 @keyframes pulse {

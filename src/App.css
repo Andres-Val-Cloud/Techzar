@@ -229,27 +229,49 @@
 /* Indicador táctil */
 .touch-indicator {
   position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.8);
-  animation: pulse 2s infinite;
-  text-align: center;
-  padding: 5px 10px;
-  background: rgba(139, 69, 255, 0.3);
-  border-radius: 20px;
+  bottom: 8px;
+  right: 12px;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 8px;
+  border-radius: 12px;
   backdrop-filter: blur(5px);
+  animation: gentlePulse 3s infinite;
+  pointer-events: none;
+  z-index: 10;
+  max-width: 80px;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .touch-indicator.back {
-  bottom: 10px;
+  background: rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  bottom: 50px;
+  right: 12px;
 }
 
-@keyframes pulse {
-  0% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-  50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
-  100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+.touch-indicator span {
+  font-size: 0.6rem;
+  font-weight: 500;
+  display: block;
+}
+
+@keyframes gentlePulse {
+  0% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+  100% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
 }
 
 /* (Se removieron estilos de flip-btn y tap-hint por no usarse) */
@@ -302,16 +324,39 @@
 
   /* Ajustar padding para el indicador táctil */
   .service-card-front {
-    padding-bottom: 70px;
+    padding-bottom: 50px;
   }
   
   .service-card-back {
-    padding-bottom: 90px;
+    padding-bottom: 80px;
   }
   
-  /* Mostrar indicador táctil solo en móviles */
+  /* Indicadores táctiles más pequeños en móviles */
   .touch-indicator {
+    font-size: 0.55rem;
+    padding: 3px 6px;
+    border-radius: 8px;
+    bottom: 6px;
+    right: 8px;
+    max-width: 70px;
     display: block;
+  }
+  
+  .touch-indicator.back {
+    bottom: 45px;
+    right: 8px;
+  }
+  
+  .touch-indicator span {
+    font-size: 0.5rem;
+  }
+  
+  /* Asegurar que el botón tenga espacio suficiente */
+  .service-btn {
+    margin-top: auto;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 20;
   }
 }
 
@@ -333,16 +378,28 @@
   }
   
   .service-card-front {
-    padding-bottom: 65px;
+    padding-bottom: 45px;
   }
   
   .service-card-back {
-    padding-bottom: 80px;
+    padding-bottom: 75px;
   }
   
+  /* Indicadores aún más pequeños */
   .touch-indicator {
-    font-size: 0.8rem;
-    bottom: 10px;
+    font-size: 0.5rem;
+    padding: 2px 4px;
+    bottom: 4px;
+    right: 6px;
+    max-width: 60px;
+  }
+  
+  .touch-indicator.back {
+    bottom: 40px;
+  }
+  
+  .touch-indicator span {
+    font-size: 0.45rem;
   }
 }
 
@@ -350,6 +407,11 @@
 @media (min-width: 769px) {
   .touch-indicator {
     display: none;
+  }
+  
+  .service-card-front,
+  .service-card-back {
+    padding-bottom: 30px;
   }
 }
 

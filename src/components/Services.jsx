@@ -166,7 +166,7 @@ const Services = () => {
                   <p className="service-description">{service.description}</p>
                   {isMobile && !flippedCards.has(index) && (
                     <div className="touch-indicator">
-                      <span>👆 Toca para ver más detalles</span>
+                      <span>Ver más</span>
                     </div>
                   )}
                 </div>
@@ -198,7 +198,7 @@ const Services = () => {
                   </motion.button>
                   {isMobile && flippedCards.has(index) && (
                     <div className="touch-indicator back">
-                      <span>👆 Toca para regresar</span>
+                      <span>Regresar</span>
                     </div>
                   )}
                 </div>

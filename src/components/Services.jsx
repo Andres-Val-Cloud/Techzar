@@ -29,16 +29,16 @@ const Services = () => {
   const toggleCard = (index, event) => {
     if (isMobile) {
       // Prevenir la propagación del evento si viene del botón
-      if (event && event.target.classList.contains('service-btn')) {
+      if (event && event.target.closest('.service-btn')) {
         return;
       }
       
       setFlippedCards(prev => {
         const newSet = new Set(prev);
         if (newSet.has(index)) {
-          newSet.delete(index);
+          newSet.delete(index); // Si ya está volteada, la regresamos
         } else {
-          newSet.add(index);
+          newSet.add(index); // Si no está volteada, la volteamos
         }
         return newSet;
       });
@@ -164,7 +164,7 @@ const Services = () => {
                   </div>
                   <h3 className="service-title">{service.title}</h3>
                   <p className="service-description">{service.description}</p>
-                  {isMobile && (
+                  {isMobile && !flippedCards.has(index) && (
                     <div className="touch-indicator">
                       <span>👆 Toca para ver más detalles</span>
                     </div>
@@ -196,7 +196,7 @@ const Services = () => {
                   >
                     Solicitar
                   </motion.button>
-                  {isMobile && (
+                  {isMobile && flippedCards.has(index) && (
                     <div className="touch-indicator back">
                       <span>👆 Toca para regresar</span>
                     </div>

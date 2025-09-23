@@ -11,7 +11,9 @@ const Services = () => {
   // Detectar si es dispositivo móvil
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 768;
+      setIsMobile(isTouchDevice && isSmallScreen);
     };
     
     checkMobile();
@@ -24,8 +26,13 @@ const Services = () => {
     navigate(`/solicitar?service=${encodeURIComponent(serviceTitle)}`);
   };
 
-  const toggleCard = (index) => {
+  const toggleCard = (index, event) => {
     if (isMobile) {
+      // Prevenir la propagación del evento si viene del botón
+      if (event && event.target.classList.contains('service-btn')) {
+        return;
+      }
+      
       setFlippedCards(prev => {
         const newSet = new Set(prev);
         if (newSet.has(index)) {
@@ -133,33 +140,38 @@ const Services = () => {
               key={index}
               className={`service-card ${flippedCards.has(index) ? 'flipped' : ''}`}
               variants={cardVariants}
-              whileHover={{ 
+              whileHover={!isMobile ? { 
                 scale: 1.05,
                 rotateY: 10,
                 z: 50
-              }}
+              } : {}}
+              whileTap={isMobile ? { scale: 0.98 } : {}}
               transition={{ 
                 type: "spring", 
                 stiffness: 300, 
                 damping: 20 
               }}
+              style={{ 
+                cursor: isMobile ? 'pointer' : 'default',
+                touchAction: 'manipulation'
+              }}
+              onClick={(e) => toggleCard(index, e)}
               >
               <div className="service-card-inner">
-                <div
-                  className="service-card-front"
-                  onClick={() => { if (isMobile) toggleCard(index); }}
-                >
+                <div className="service-card-front">
                   <div className="service-icon">
                     {service.icon}
                   </div>
                   <h3 className="service-title">{service.title}</h3>
                   <p className="service-description">{service.description}</p>
+                  {isMobile && (
+                    <div className="touch-indicator">
+                      <span>👆 Toca para ver más detalles</span>
+                    </div>
+                  )}
                 </div>
                 
-                <div
-                  className="service-card-back"
-                  onClick={() => { if (isMobile) toggleCard(index); }}
-                >
+                <div className="service-card-back">
                   <h4 className="service-features-title">Incluye:</h4>
                   <ul className="service-features">
                     {service.features.map((feature, idx) => (
@@ -184,6 +196,11 @@ const Services = () => {
                   >
                     Solicitar
                   </motion.button>
+                  {isMobile && (
+                    <div className="touch-indicator back">
+                      <span>👆 Toca para regresar</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>

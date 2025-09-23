@@ -28,7 +28,7 @@ const Services = () => {
 
   const toggleCard = (index, event) => {
     if (isMobile) {
-      // Prevenir la propagación del evento si viene del botón
+      // Prevenir la propagación del evento si viene del botón "Solicitar"
       if (event && event.target.closest('.service-btn')) {
         event.stopPropagation();
         return;
@@ -44,6 +44,12 @@ const Services = () => {
         return newSet;
       });
     }
+  };
+
+  // Nueva función específica para los indicadores táctiles
+  const handleTouchIndicator = (index, event) => {
+    event.stopPropagation();
+    toggleCard(index, event);
   };
 
   const services = [
@@ -166,7 +172,10 @@ const Services = () => {
                   <h3 className="service-title">{service.title}</h3>
                   <p className="service-description">{service.description}</p>
                   {isMobile && !flippedCards.has(index) && (
-                    <div className="touch-indicator">
+                    <div 
+                      className="touch-indicator clickable"
+                      onClick={(e) => handleTouchIndicator(index, e)}
+                    >
                       <span>Ver más</span>
                     </div>
                   )}
@@ -198,7 +207,10 @@ const Services = () => {
                     Solicitar
                   </motion.button>
                   {isMobile && flippedCards.has(index) && (
-                    <div className="touch-indicator back">
+                    <div 
+                      className="touch-indicator back clickable"
+                      onClick={(e) => handleTouchIndicator(index, e)}
+                    >
                       <span>Regresar</span>
                     </div>
                   )}

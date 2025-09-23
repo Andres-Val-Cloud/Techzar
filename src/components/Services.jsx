@@ -30,6 +30,7 @@ const Services = () => {
     if (isMobile) {
       // Prevenir la propagación del evento si viene del botón
       if (event && event.target.closest('.service-btn')) {
+        event.stopPropagation();
         return;
       }
       

@@ -469,7 +469,7 @@
 .whatsapp-button {
   position: fixed;
   bottom: 25px;
-  right: 20px;
+  right: 10px;
   z-index: 1000;
   cursor: pointer;
   display: flex;
@@ -550,11 +550,11 @@
   border-bottom: 5px solid transparent;
 }
 
-/* Estilos para desktop/laptop - más pegado a la esquina */
+/* Estilos para desktop/laptop - pegado al borde derecho */
 @media (min-width: 1024px) {
   .whatsapp-button {
     bottom: 25px;
-    right: 15px;
+    right: 5px;
   }
   
   .whatsapp-icon {
@@ -568,7 +568,7 @@
 @media (min-width: 769px) and (max-width: 1023px) {
   .whatsapp-button {
     bottom: 25px;
-    right: 18px;
+    right: 8px;
   }
   
   .whatsapp-icon {

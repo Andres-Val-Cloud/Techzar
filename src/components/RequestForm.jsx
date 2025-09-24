@@ -15,6 +15,7 @@ const RequestForm = () => {
   const emailConfig = {
     serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_nqdqk05',
     templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_lcza6sa',
+    confirmationTemplateId: import.meta.env.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID || 'template_skc8k3l',
     publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '1DLKvC0WhOnSzcPLV'
   };
 
@@ -62,9 +63,9 @@ const RequestForm = () => {
     setSubmitError(null);
 
     try {
-      // Preparar los datos para el email
+      // Preparar los datos para el email de la empresa
       const currentDate = new Date();
-      const emailData = {
+      const companyEmailData = {
         service: formData.service,
         name: formData.name,
         email: formData.email,
@@ -78,19 +79,40 @@ const RequestForm = () => {
         to_email: 'techzar.mx@gmail.com'
       };
 
-      // Enviar email usando EmailJS
-      const response = await emailjs.send(
-        emailConfig.serviceId,
-        emailConfig.templateId,
-        emailData,
-        emailConfig.publicKey
-      );
+      // Preparar los datos para el email de confirmación al cliente
+      const clientEmailData = {
+        to_name: formData.name,
+        to_email: formData.email,
+        service: formData.service,
+        company_name: 'Techzar',
+        company_email: 'techzar.mx@gmail.com',
+        company_phone: '+52 (123) 456-7890',
+        date: currentDate.toLocaleDateString('es-MX'),
+        time: currentDate.toLocaleTimeString('es-MX')
+      };
 
-      console.log('Email enviado exitosamente:', response);
+      // Enviar ambos emails: notificación a la empresa y confirmación al cliente
+      const [companyResponse, clientResponse] = await Promise.all([
+        emailjs.send(
+          emailConfig.serviceId,
+          emailConfig.templateId,
+          companyEmailData,
+          emailConfig.publicKey
+        ),
+        emailjs.send(
+          emailConfig.serviceId,
+          emailConfig.confirmationTemplateId,
+          clientEmailData,
+          emailConfig.publicKey
+        )
+      ]);
+
+      console.log('Email a empresa enviado:', companyResponse);
+      console.log('Email de confirmación al cliente enviado:', clientResponse);
       setIsSubmitted(true);
       
     } catch (error) {
-      console.error('Error al enviar email:', error);
+      console.error('Error al enviar emails:', error);
       setSubmitError('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente.');
     } finally {
       setIsSubmitting(false);
@@ -118,7 +140,9 @@ const RequestForm = () => {
             ✅
           </motion.div>
           <h2>¡Solicitud Enviada Exitosamente!</h2>
-          <p>Gracias por contactarnos. Nos pondremos en contacto contigo pronto.</p>
+          <p>Gracias por contactarnos. Hemos recibido tu solicitud para <strong>{formData.service}</strong>.</p>
+          <p>Te hemos enviado un email de confirmación a <strong>{formData.email}</strong> con todos los detalles.</p>
+          <p>Nos pondremos en contacto contigo dentro de las próximas 24 horas.</p>
 
           <motion.div 
             className="success-actions"

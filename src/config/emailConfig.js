@@ -11,8 +11,11 @@ export const emailConfig = {
   // Tu Service ID de EmailJS (ejemplo: 'service_abcd1234')
   serviceId: 'YOUR_SERVICE_ID',
   
-  // Tu Template ID de EmailJS (ejemplo: 'template_xyz789')
+  // Tu Template ID de EmailJS para notificaciones a la empresa (ejemplo: 'template_xyz789')
   templateId: 'YOUR_TEMPLATE_ID',
+  
+  // Tu Template ID para confirmaciones al cliente (ejemplo: 'template_skc8k3l')
+  confirmationTemplateId: 'YOUR_CONFIRMATION_TEMPLATE_ID',
   
   // Tu Public Key de EmailJS (ejemplo: 'abcdefghijklmnop')
   publicKey: 'YOUR_PUBLIC_KEY',

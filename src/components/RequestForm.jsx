@@ -62,6 +62,14 @@ const RequestForm = () => {
     setIsSubmitting(true);
     setSubmitError(null);
 
+    // Debug: Verificar variables de entorno
+    console.log('🔍 Variables de entorno EmailJS:', {
+      serviceId: emailConfig.serviceId,
+      templateId: emailConfig.templateId,
+      confirmationTemplateId: emailConfig.confirmationTemplateId,
+      publicKey: emailConfig.publicKey ? '***CONFIGURADA***' : 'NO CONFIGURADA'
+    });
+
     try {
       // Preparar los datos para el email de la empresa
       const currentDate = new Date();
@@ -91,7 +99,12 @@ const RequestForm = () => {
         time: currentDate.toLocaleTimeString('es-MX')
       };
 
+      console.log('📧 Datos del email a la empresa:', companyEmailData);
+      console.log('📧 Datos del email de confirmación:', clientEmailData);
+
       // Enviar ambos emails: notificación a la empresa y confirmación al cliente
+      console.log('🚀 Enviando emails...');
+      
       const [companyResponse, clientResponse] = await Promise.all([
         emailjs.send(
           emailConfig.serviceId,
@@ -107,13 +120,19 @@ const RequestForm = () => {
         )
       ]);
 
-      console.log('Email a empresa enviado:', companyResponse);
-      console.log('Email de confirmación al cliente enviado:', clientResponse);
+      console.log('✅ Email a empresa enviado exitosamente:', companyResponse);
+      console.log('✅ Email de confirmación al cliente enviado exitosamente:', clientResponse);
+      console.log(`📬 Email de confirmación enviado a: ${formData.email}`);
       setIsSubmitted(true);
       
     } catch (error) {
-      console.error('Error al enviar emails:', error);
-      setSubmitError('Hubo un error al enviar la solicitud. Por favor, intenta nuevamente.');
+      console.error('❌ Error detallado al enviar emails:', {
+        error: error,
+        message: error.message,
+        status: error.status,
+        text: error.text
+      });
+      setSubmitError(`Error al enviar la solicitud: ${error.text || error.message || 'Error desconocido'}. Por favor, intenta nuevamente.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -128,57 +147,9 @@ const RequestForm = () => {
     }
   };
 
-  const handleHomeClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('Botón VOLVER AL INICIO clickeado');
-    goBack();
-  };
 
-  if (isSubmitted) {
-    return (
-      <div className="request-form-page">
-        <motion.div 
-          className="success-message"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.div 
-            className="success-icon"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            ✅
-          </motion.div>
-          <h2>¡Solicitud Enviada Exitosamente!</h2>
-          <p>Gracias por contactarnos. Hemos recibido tu solicitud para <strong>{formData.service}</strong>.</p>
-          <p>Te hemos enviado un email de confirmación a <strong>{formData.email}</strong> con todos los detalles.</p>
-          <p>Nos pondremos en contacto contigo dentro de las próximas 24 horas.</p>
 
-          <motion.div 
-            className="success-actions"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2rem' }}
-          >
-            <motion.button 
-              type="button"
-              className="btn btn-primary back-to-home-btn" 
-              onClick={handleHomeClick}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              style={{ cursor: 'pointer', pointerEvents: 'auto' }}
-            > 
-              <FaHome style={{ marginRight: '0.5rem' }} /> VOLVER AL INICIO
-            </motion.button>
-          </motion.div>
-        </motion.div>
-      </div>
-    );
-  }
+
 
   return (
     <div className="request-form-page">
@@ -204,8 +175,37 @@ const RequestForm = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {/* Selección de servicio */}
-          <div className="form-group">
+          {isSubmitted ? (
+            /* Mensaje de confirmación */
+            <div className="success-message" style={{ textAlign: 'center', padding: '2rem' }}>
+              <div className="success-icon" style={{ fontSize: '3rem', marginBottom: '1rem' }}>
+                ✅
+              </div>
+              <h2 style={{ color: '#28a745', marginBottom: '1rem' }}>¡Solicitud Enviada Exitosamente!</h2>
+              <p style={{ marginBottom: '0.5rem' }}>
+                Gracias por contactarnos. Hemos recibido tu solicitud para <strong>{formData.service}</strong>.
+              </p>
+              <p style={{ marginBottom: '0.5rem' }}>
+                Te hemos enviado un email de confirmación a <strong>{formData.email}</strong> con todos los detalles.
+              </p>
+              <p style={{ marginBottom: '2rem' }}>
+                Nos pondremos en contacto contigo dentro de las próximas 24 horas.
+              </p>
+              
+              <button 
+                type="button" 
+                className="btn btn-primary" 
+                onClick={() => navigate('/')}
+                style={{ padding: '0.75rem 1.5rem', fontSize: '1rem' }}
+              >
+                <FaHome style={{ marginRight: '0.5rem' }} /> 
+                Volver al inicio
+              </button>
+            </div>
+          ) : (
+            <>
+              {/* Selección de servicio */}
+              <div className="form-group">
             <label htmlFor="service">
               <FaComments />
               Servicio Solicitado *
@@ -378,16 +378,18 @@ const RequestForm = () => {
             * Campos obligatorios. Nos pondremos en contacto contigo en las próximas 24 horas.
           </p>
 
-          {/* Mensaje de error */}
-          {submitError && (
-            <motion.div 
-              className="error-message"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {submitError}
-            </motion.div>
+              {/* Mensaje de error */}
+              {submitError && (
+                <motion.div 
+                  className="error-message"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {submitError}
+                </motion.div>
+              )}
+            </>
           )}
         </motion.form>
       </div>

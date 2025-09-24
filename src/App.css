@@ -466,6 +466,7 @@
    BOTÓN FLOTANTE DE WHATSAPP
    =============================== */
 
+/* Actualizado: 2025-09-24 - Posicionamiento optimizado */
 .whatsapp-button {
   position: fixed;
   bottom: 25px;
@@ -554,7 +555,7 @@
 @media (min-width: 1024px) {
   .whatsapp-button {
     bottom: 25px;
-    right: 5px;
+    right: 3px; /* Aún más pegado al borde */
   }
   
   .whatsapp-icon {

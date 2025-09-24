@@ -114,8 +114,8 @@ const Hero = () => {
             <iframe 
               width="100%" 
               height="315" 
-              src="https://www.youtube.com/embed/XvCBvLGzlAQ?rel=0&modestbranding=1" 
-              title="Video Promocional - Techzar" 
+              src="https://www.youtube.com/embed/gaCb3yb3XUo?rel=0&modestbranding=1" 
+              title="Comercial Corto - Techzar | Desarrollo Tecnológico" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowFullScreen

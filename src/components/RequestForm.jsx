@@ -74,7 +74,6 @@ const RequestForm = () => {
       // Preparar los datos para el email de la empresa
       const currentDate = new Date();
       const companyEmailData = {
-        to_email: 'techzar.mx@gmail.com',
         service: formData.service,
         name: formData.name,
         email: formData.email,
@@ -85,15 +84,7 @@ const RequestForm = () => {
         urgency: formData.urgency,
         date: currentDate.toLocaleDateString('es-MX'),
         time: currentDate.toLocaleTimeString('es-MX'),
-        // Campos adicionales para la plantilla
-        cliente_nombre: formData.name,
-        cliente_email: formData.email,
-        cliente_telefono: formData.phone,
-        cliente_empresa: formData.company || 'No especificada',
-        cliente_ubicacion: formData.location,
-        servicio_solicitado: formData.service,
-        detalles_proyecto: formData.message,
-        nivel_urgencia: formData.urgency
+        to_email: 'techzar.mx@gmail.com'
       };
 
       // Preparar los datos para el email de confirmación al cliente
@@ -103,7 +94,7 @@ const RequestForm = () => {
         service: formData.service,
         company_name: 'Techzar',
         company_email: 'techzar.mx@gmail.com',
-        company_phone: '+52 (123) 456-7890',
+        company_phone: '+52 (33) 39486994',
         date: currentDate.toLocaleDateString('es-MX'),
         time: currentDate.toLocaleTimeString('es-MX')
       };
@@ -285,7 +276,7 @@ const RequestForm = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                placeholder="+52 33 1234 5678"
+                placeholder="+52 (33) 39486994"
                 required
               />
             </div>

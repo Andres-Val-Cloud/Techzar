@@ -1,20 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaWhatsapp, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaWhatsapp, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: <FaFacebook />, href: '#', name: 'Facebook' },
-    { icon: <FaInstagram />, href: '#', name: 'Instagram' },
-    { icon: <FaLinkedin />, href: '#', name: 'LinkedIn' },
-    { icon: <FaTwitter />, href: '#', name: 'Twitter' },
-    { icon: <FaWhatsapp />, href: '#', name: 'WhatsApp' }
+    { icon: <FaWhatsapp />, href: 'https://wa.me/523339486994?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20desarrollo%20tecnol%C3%B3gico', name: 'WhatsApp' }
   ];
 
   const contactInfo = [
     { icon: <FaEnvelope />, text: 'techzar.mx@gmail.com', href: 'mailto:techzar.mx@gmail.com' },
-    { icon: <FaPhone />, text: '+52 (33) 3948 6994', href: 'tel:+523339486994' },
-    { icon: <FaMapMarkerAlt />, text: 'Ciudad, País', href: '#' }
+    { icon: <FaPhone />, text: '+52 (33) 39486994', href: 'tel:+523339486994' },
+    { icon: <FaMapMarkerAlt />, text: 'Zapopan, Jalisco', href: '#' }
   ];
 
   const services = [
@@ -120,34 +116,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Newsletter */}
-          <motion.div
-            className="footer-section"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <h4 className="footer-title">Newsletter</h4>
-            <p className="newsletter-text">
-              Mantente al día con las últimas tecnologías y nuestros servicios.
-            </p>
-            <form className="newsletter-form">
-              <input
-                type="email"
-                placeholder="Tu email"
-                className="newsletter-input"
-              />
-              <motion.button
-                type="submit"
-                className="newsletter-btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Suscribirse
-              </motion.button>
-            </form>
-          </motion.div>
+
         </div>
 
         <motion.div

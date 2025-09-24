@@ -468,8 +468,8 @@
 
 .whatsapp-button {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 25px;
+  right: 20px;
   z-index: 1000;
   cursor: pointer;
   display: flex;
@@ -550,25 +550,25 @@
   border-bottom: 5px solid transparent;
 }
 
-/* Estilos para desktop/laptop - mejor posicionamiento */
+/* Estilos para desktop/laptop - más pegado a la esquina */
 @media (min-width: 1024px) {
   .whatsapp-button {
-    bottom: 40px;
-    right: 40px;
+    bottom: 25px;
+    right: 15px;
   }
   
   .whatsapp-icon {
-    width: 75px;
-    height: 75px;
-    font-size: 38px;
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
   }
 }
 
 /* Estilos para tablets */
 @media (min-width: 769px) and (max-width: 1023px) {
   .whatsapp-button {
-    bottom: 35px;
-    right: 35px;
+    bottom: 25px;
+    right: 18px;
   }
   
   .whatsapp-icon {

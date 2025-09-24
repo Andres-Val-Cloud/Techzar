@@ -466,12 +466,12 @@
    BOTÓN FLOTANTE DE WHATSAPP
    =============================== */
 
-/* Actualizado: 2025-09-24 - Posicionamiento optimizado */
+/* Actualizado: 2025-09-24 - Posicionamiento FORZADO */
 .whatsapp-button {
-  position: fixed;
-  bottom: 25px;
-  right: 10px;
-  z-index: 1000;
+  position: fixed !important;
+  bottom: 25px !important;
+  right: 5px !important;
+  z-index: 1000 !important;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -551,17 +551,19 @@
   border-bottom: 5px solid transparent;
 }
 
-/* Estilos para desktop/laptop - pegado al borde derecho */
-@media (min-width: 1024px) {
-  .whatsapp-button {
-    bottom: 25px;
-    right: 3px; /* Aún más pegado al borde */
+/* FORZAR POSICIONAMIENTO EXTREMO PARA DESKTOP */
+@media screen and (min-width: 1024px) {
+  div.whatsapp-button {
+    bottom: 25px !important;
+    right: 0px !important; /* Completamente pegado al borde */
+    position: fixed !important;
+    z-index: 9999 !important;
   }
   
   .whatsapp-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 35px;
+    width: 70px !important;
+    height: 70px !important;
+    font-size: 35px !important;
   }
 }
 

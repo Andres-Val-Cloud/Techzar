@@ -825,6 +825,39 @@
   color: rgba(255, 255, 255, 0.95);
 }
 
+/* Botón de regresar al inicio */
+.back-to-home-btn {
+  background: linear-gradient(135deg, #8b45ff, #6c5ce7) !important;
+  border: none !important;
+  color: white !important;
+  padding: 15px 30px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  border-radius: 50px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  margin: 2rem auto !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Montserrat', sans-serif !important;
+  box-shadow: 0 8px 25px rgba(139, 69, 255, 0.3) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.back-to-home-btn:hover {
+  background: linear-gradient(135deg, #9c5aff, #7d6ce8) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 35px rgba(139, 69, 255, 0.5) !important;
+  color: white !important;
+}
+
+.back-to-home-btn:active {
+  transform: translateY(0) !important;
+}
+
 .redirect-message {
   color: rgba(255, 255, 255, 0.85);
   font-style: italic;
@@ -861,6 +894,16 @@
   
   .success-message h2 {
     font-size: 2rem;
+  }
+  
+  .success-message p {
+    font-size: 1rem;
+  }
+  
+  .back-to-home-btn {
+    padding: 12px 25px !important;
+    font-size: 1rem !important;
+    margin: 1.5rem auto !important;
   }
 }
 

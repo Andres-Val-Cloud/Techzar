@@ -149,11 +149,20 @@ const RequestForm = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem' }}
+            style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2rem' }}
           >
-            <button className="btn btn-primary" onClick={() => navigate('/')}> 
-              <FaHome style={{ marginRight: '0.5rem' }} /> Volver al inicio
-            </button>
+            <motion.button 
+              className="btn btn-primary back-to-home-btn" 
+              onClick={() => {
+                console.log('Navegando a inicio...');
+                navigate('/');
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            > 
+              <FaHome style={{ marginRight: '0.5rem' }} /> VOLVER AL INICIO
+            </motion.button>
           </motion.div>
         </motion.div>
       </div>

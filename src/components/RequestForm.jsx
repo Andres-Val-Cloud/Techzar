@@ -120,7 +120,19 @@ const RequestForm = () => {
   };
 
   const goBack = () => {
-    navigate('/');
+    try {
+      navigate('/', { replace: true });
+    } catch (error) {
+      // Fallback si hay algún problema con el router
+      window.location.href = '/';
+    }
+  };
+
+  const handleHomeClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Botón VOLVER AL INICIO clickeado');
+    goBack();
   };
 
   if (isSubmitted) {
@@ -152,14 +164,13 @@ const RequestForm = () => {
             style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2rem' }}
           >
             <motion.button 
+              type="button"
               className="btn btn-primary back-to-home-btn" 
-              onClick={() => {
-                console.log('Navegando a inicio...');
-                navigate('/');
-              }}
+              onClick={handleHomeClick}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              style={{ cursor: 'pointer', pointerEvents: 'auto' }}
             > 
               <FaHome style={{ marginRight: '0.5rem' }} /> VOLVER AL INICIO
             </motion.button>

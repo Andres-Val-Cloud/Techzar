@@ -845,6 +845,11 @@
   box-shadow: 0 8px 25px rgba(139, 69, 255, 0.3) !important;
   text-transform: uppercase !important;
   letter-spacing: 1px !important;
+  text-decoration: none !important;
+  pointer-events: auto !important;
+  user-select: none !important;
+  min-width: 200px !important;
+  outline: none !important;
 }
 
 .back-to-home-btn:hover {
@@ -856,6 +861,11 @@
 
 .back-to-home-btn:active {
   transform: translateY(0) !important;
+}
+
+.back-to-home-btn:focus {
+  outline: 2px solid #8b45ff !important;
+  outline-offset: 2px !important;
 }
 
 .redirect-message {

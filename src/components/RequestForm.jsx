@@ -112,32 +112,20 @@ const RequestForm = () => {
       );
       console.log('✅ Email a empresa enviado exitosamente:', companyResponse);
 
-      // Enviar email de confirmación al cliente usando la misma plantilla pero con diferentes datos
-      console.log('🚀 Enviando email de confirmación al cliente...');
-      const clientConfirmationData = {
-        to_name: formData.name,
-        to_email: formData.email,
-        service: formData.service,
-        name: formData.name,
-        email: 'techzar.mx@gmail.com', // Email de respuesta
-        phone: '+52 33 3948 6994', // Teléfono de contacto
-        company: 'Techzar',
-        location: 'Guadalajara, Jalisco',
-        message: `Hola ${formData.name}, gracias por contactarnos para el servicio de ${formData.service}. Hemos recibido tu solicitud y nos pondremos en contacto contigo dentro de las próximas 24 horas.`,
-        urgency: 'Confirmación de solicitud',
-        date: currentDate.toLocaleDateString('es-MX'),
-        time: currentDate.toLocaleTimeString('es-MX')
-      };
-
-      const clientResponse = await emailjs.send(
-        emailConfig.serviceId,
-        emailConfig.templateId, // Usar la misma plantilla
-        clientConfirmationData,
-        emailConfig.publicKey
-      );
-
-      console.log('✅ Email de confirmación al cliente enviado exitosamente:', clientResponse);
-      console.log(`📬 Email de confirmación enviado a: ${formData.email}`);
+      // Intentar enviar email de confirmación al cliente
+      try {
+        console.log('🚀 Enviando email de confirmación al cliente...');
+        const clientResponse = await emailjs.send(
+          emailConfig.serviceId,
+          emailConfig.confirmationTemplateId, // usar la plantilla de confirmación
+          clientEmailData,
+          emailConfig.publicKey
+        );
+        console.log('✅ Email de confirmación al cliente enviado exitosamente:', clientResponse);
+      } catch (clientError) {
+        console.warn('⚠️ No se pudo enviar email de confirmación al cliente:', clientError);
+        // Continuar aunque falle el email del cliente
+      }
       setIsSubmitted(true);
       
     } catch (error) {
